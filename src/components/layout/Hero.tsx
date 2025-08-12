@@ -1,5 +1,6 @@
-import { ArrowRight, Package, Clock, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ArrowRight, ShoppingBag, Star, Sparkles, TrendingUp, Clock, Package } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -33,22 +34,26 @@ const Hero = () => {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold shadow-brand"
-              >
-                Browse Categories
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              <Link to="/categories">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-brand-orange to-brand-orange-dark hover:from-brand-orange-dark hover:to-brand-orange text-white font-bold px-8 py-3 shadow-brand"
+                >
+                  Browse Categories
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
               
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
-              >
-                <Package className="w-5 h-5 mr-2" />
-                View Pre-Orders
-              </Button>
+              <Link to="/pre-orders">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white font-bold px-8 py-3"
+                >
+                  <ShoppingBag className="w-5 h-5 mr-2" />
+                  View Pre-Orders
+                </Button>
+              </Link>
             </div>
 
             {/* Stats */}
