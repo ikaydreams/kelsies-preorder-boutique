@@ -51,8 +51,8 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                      <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                      <p className="text-sm text-muted-foreground">Mon-Fri 9AM-6PM EST</p>
+                      <p className="text-muted-foreground">0557135717</p>
+                      <p className="text-sm text-muted-foreground">Mon-Fri 9AM-6PM </p>
                     </div>
                   </div>
                 </CardContent>
@@ -66,7 +66,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                      <p className="text-muted-foreground">hello@kelsiepreorder.com</p>
+                      <p className="text-muted-foreground">jessicamcdonald652@gmail.com</p>
                       <p className="text-sm text-muted-foreground">We'll respond within 24 hours</p>
                     </div>
                   </div>
@@ -82,9 +82,9 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Address</h3>
                       <p className="text-muted-foreground">
-                        123 Commerce Street<br />
-                        Suite 456<br />
-                        New York, NY 10001
+                       Nungua<br />
+                        Prampram<br />
+                       Central University Road
                       </p>
                     </div>
                   </div>
