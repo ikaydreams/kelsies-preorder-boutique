@@ -1,27 +1,22 @@
-class User {
-    constructor(name, email) {
-        this.name = name;
-        this.email = email;
-    }
+const mongoose = require('mongoose');
 
-    static getSchema() {
-        return {
-            name: 'string',
-            email: 'string'
-        };
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 100
+    },
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true,
+        maxlength: 100,
+        match: /^\S+@\S+\.\S+$/
     }
+}, { timestamps: true });
 
-    save() {
-        // Logic to save user to the database
-    }
-
-    static findById(id) {
-        // Logic to find a user by ID
-    }
-
-    static findAll() {
-        // Logic to find all users
-    }
-}
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
