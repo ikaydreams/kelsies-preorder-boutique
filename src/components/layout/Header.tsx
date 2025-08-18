@@ -21,9 +21,11 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover:opacity-90 transition-opacity">
-            <div className="w-12 h-12 bg-gradient-brand rounded-2xl flex items-center justify-center shadow-brand">
-              <ShoppingBag className="w-7 h-7 text-white" />
-            </div>
+            <img
+              src="/logo.jpg"
+              alt="Logo"
+              className="w-12 h-12 rounded-2xl shadow-brand object-cover"
+            />
             <div>
               <h1 className="text-xl font-display font-bold text-foreground">
                 Kelsie & Pre Order
