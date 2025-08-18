@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ShoppingBag, User, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -18,6 +20,16 @@ const Header = () => {
   // Google OAuth handler
   const handleGoogleSignIn = () => {
     window.location.href = "http://localhost:5000/auth/google";
+  };
+
+  // Search handler
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/search?query=${encodeURIComponent(searchTerm.trim())}`);
+      setSearchTerm("");
+      setIsMenuOpen(false);
+    }
   };
 
   return (
@@ -58,9 +70,18 @@ const Header = () => {
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-3">
-            <Button variant="ghost" size="icon" className="hover:bg-accent">
-              <Search className="w-5 h-5" />
-            </Button>
+            <form onSubmit={handleSearch} className="flex items-center space-x-2">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+                placeholder="Search products..."
+                className="px-2 py-1 rounded-lg border border-border bg-background text-foreground text-sm"
+              />
+              <Button variant="ghost" size="icon" className="hover:bg-accent" type="submit">
+                <Search className="w-5 h-5" />
+              </Button>
+            </form>
             <Button variant="ghost" size="icon" className="hover:bg-accent">
               <User className="w-5 h-5" />
             </Button>
@@ -87,6 +108,18 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden mt-6 pb-6 border-t border-border pt-6 animate-fade-in">
             <nav className="flex flex-col space-y-3">
+              <form onSubmit={handleSearch} className="flex items-center space-x-2 mb-3">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                  placeholder="Search products..."
+                  className="px-2 py-1 rounded-lg border border-border bg-background text-foreground text-sm w-full"
+                />
+                <Button variant="ghost" size="icon" className="hover:bg-accent" type="submit">
+                  <Search className="w-5 h-5" />
+                </Button>
+              </form>
               {navItems.map((item) => (
                 <Link
                   key={item.name}
@@ -106,7 +139,10 @@ const Header = () => {
                   <User className="w-4 h-4 mr-2" />
                   My Account
                 </Button>
-                <Button className="w-full bg-primary hover:bg-primary-hover text-primary-foreground font-semibold">
+                <Button
+                  className="w-full bg-primary hover:bg-primary-hover text-primary-foreground font-semibold"
+                  onClick={handleGoogleSignIn}
+                >
                   Sign In with Google
                 </Button>
               </div>
