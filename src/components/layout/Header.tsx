@@ -15,6 +15,11 @@ const Header = () => {
     { name: "Contact", href: "/contact" },
   ];
 
+  // Google OAuth handler
+  const handleGoogleSignIn = () => {
+    window.location.href = "http://localhost:5000/auth/google";
+  };
+
   return (
     <header className="bg-background border-b border-border sticky top-0 z-50 backdrop-blur-md bg-background/95">
       <div className="container mx-auto px-4 py-4">
@@ -59,7 +64,10 @@ const Header = () => {
             <Button variant="ghost" size="icon" className="hover:bg-accent">
               <User className="w-5 h-5" />
             </Button>
-            <Button className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold px-6 shadow-sm">
+            <Button
+              className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold px-6 shadow-sm"
+              onClick={handleGoogleSignIn}
+            >
               Sign In with Google
             </Button>
           </div>
