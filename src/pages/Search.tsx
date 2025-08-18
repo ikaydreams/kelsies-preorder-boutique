@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Button } from "@/components/ui/button";
 
 const allProducts = [
     { id: 1, name: "iPhone 16 Pro", price: "$999", category: "Smartphones", image: "", description: "Next-generation iPhone with revolutionary features" },
@@ -1785,6 +1786,13 @@ function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
+const handleWhatsAppOrder = (product: any) => {
+    const message = `Hi! I want to pre-order ${product.name} for ${product.price}${product.expectedDate ? `. Expected delivery: ${product.expectedDate}` : ""}`;
+    const whatsappNumber = "233557135717";
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+};
+
 const Search = () => {
     const query = useQuery().get("query")?.toLowerCase() || "";
 
@@ -1804,12 +1812,21 @@ const Search = () => {
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredProducts.map(product => (
-                            <div key={product.id} className="border rounded-lg p-4 bg-white">
+                            <div key={product.id} className="border rounded-lg p-4 bg-white flex flex-col">
                                 <img src={product.image || "/placeholder.svg"} alt={product.name} className="w-full h-32 object-cover mb-2 rounded" />
                                 <h2 className="font-semibold">{product.name}</h2>
                                 <p className="text-sm text-muted-foreground">{product.description}</p>
                                 <p className="font-bold">{product.price}</p>
                                 <p className="text-xs">{product.category}</p>
+                                {product.expectedDate && (
+                                    <p className="text-xs text-muted-foreground">{product.expectedDate}</p>
+                                )}
+                                <Button
+                                    onClick={() => handleWhatsAppOrder(product)}
+                                    className="mt-3 w-full bg-brand-orange hover:bg-brand-orange-dark text-white font-semibold"
+                                >
+                                    Pre-Order via WhatsApp
+                                </Button>
                             </div>
                         ))}
                     </div>
