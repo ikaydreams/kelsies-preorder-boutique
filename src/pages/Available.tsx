@@ -83,7 +83,7 @@ const Available = () => {
 
   const handleWhatsAppOrder = (product: any) => {
     const message = `Hi! I want to buy ${product.name} for ${product.price}. Is it still available?`;
-    const whatsappNumber = "1234567890"; // Replace with your WhatsApp number
+    const whatsappNumber = "233557135717"; // Replace with your WhatsApp number
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
